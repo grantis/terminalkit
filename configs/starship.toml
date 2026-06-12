@@ -1,0 +1,143 @@
+# Starship Configuration - optimized for JetBrains Mono Nerd Font
+# Location: ~/.config/starship.toml
+
+format = """
+[┌─](#0f4c81)$username$hostname$directory$git_branch$git_status
+[└─>](#0f4c81)$nodejs$python$cmd_duration$status $character"""
+
+right_format = ""
+
+add_newline = true
+
+# ==============================================================================
+# Module: Username
+# ==============================================================================
+[username]
+style_user = "bold #06d6a0"
+style_root = "bold #ef476f"
+format = "[$user]($style) "
+disabled = false
+show_always = false
+
+# ==============================================================================
+# Module: Hostname
+# ==============================================================================
+[hostname]
+ssh_only = false
+ssh_symbol = "🌐 "
+format = "[@$hostname]($style) "
+style = "bold #ffd166"
+disabled = false
+
+# ==============================================================================
+# Module: Directory
+# ==============================================================================
+[directory]
+style = "bold #118ab2"
+format = "[$path]($style)[$read_only]($read_only_style) "
+truncation_length = 3
+truncation_symbol = "…/"
+truncate_to_repo = true
+home_symbol = "~"
+read_only = "🔒 "
+read_only_style = "#ef476f"
+
+# ==============================================================================
+# Module: Git Status
+# ==============================================================================
+[git_status]
+format = "([\\($all_status$ahead_behind\\)]($style) )"
+style = "bold #ee10fa"
+conflicted = "🏳"
+ahead = "⇡${count}"
+behind = "⇣${count}"
+diverged = "⇕⇡${ahead_count}⇣${behind_count}"
+untracked = "?${count}"
+stashed = "$${count}"
+modified = "!${count}"
+staged = "+${count}"
+renamed = "»${count}"
+deleted = "✘${count}"
+
+# ==============================================================================
+# Module: Git Branch
+# ==============================================================================
+[git_branch]
+style = "#06d6a0"
+format = "([$symbol$branch]($style) )"
+symbol = "  "
+truncation_length = 30
+truncation_symbol = "…"
+
+# ==============================================================================
+# Module: Node.js
+# ==============================================================================
+[nodejs]
+style = "#68a063"
+symbol = " "
+format = "[$symbol($version )]($style)"
+detect_extensions = ["js", "mjs", "cjs", "ts", "mts", "cts"]
+detect_files = ["package.json", ".node-version", ".nvmrc"]
+detect_folders = ["node_modules"]
+
+# ==============================================================================
+# Module: Docker Context
+# ==============================================================================
+[docker_context]
+style = "#2496ed"
+symbol = "🐳 "
+format = "[$symbol($context)]($style) "
+disabled = true
+
+# ==============================================================================
+# Module: Command Duration
+# ==============================================================================
+[cmd_duration]
+min_time = 500
+style = "bold #f17c1d"
+format = "⏱️ [$duration]($style) "
+
+# ==============================================================================
+# Module: Exit Status
+# ==============================================================================
+[status]
+style = "bold #ef476f"
+symbol = "✘"
+success_symbol = ""
+format = "[$symbol]($style) "
+disabled = false
+
+# ==============================================================================
+# Module: Line Break
+# ==============================================================================
+[line_break]
+disabled = false
+
+# ==============================================================================
+# Module: Python
+# ==============================================================================
+[python]
+style = "#3776ab"
+symbol = "🐍 "
+format = "[$symbol($version )]($style)"
+detect_extensions = ["py"]
+detect_files = ["requirements.txt", "pyproject.toml", "Pipfile"]
+
+# ==============================================================================
+# Character Module (the actual input prompt symbol)
+# ==============================================================================
+[character]
+success_symbol = "[❯](#06d6a0)"
+error_symbol = "[❯](#ef476f)"
+
+# ==============================================================================
+# Other Modules (disabled for cleaner look)
+# ==============================================================================
+[rust]
+disabled = true
+
+[package]
+disabled = true
+
+[aws]
+disabled = true
